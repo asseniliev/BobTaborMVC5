@@ -1,12 +1,52 @@
 ﻿@model List<HelloMVC.Models.Car>
 @{
     ViewBag.Title = "Index";
+    int myVariable = 1;
 }
 
-<h2>@ViewBag.MyValue</h2>
+@*<h2>@ViewBag.MyValue</h2>*@
 
-@foreach (var car in Model)
+@*@foreach (var car in Model)
 {
     <p>@car.Id - @car.Make - @car.Model </p>
+    myVariable++;
+
+    <p>Value: @myVariable.ToString()</p>
+}*@
+
+@{ 
+    var name = "Bob";
+    var day = DateTime.Now.DayOfWeek.ToString();
+
+    <p>Howdy, <b>@name.</b> Aren't @(day)s great.</p>
 }
 
+@*@{ 
+    var productId = 123;
+    <p>Product Id: ACME@(productId)</p>
+}*@
+
+@helper pluralizeChildren(int childCount) { 
+    @(childCount == 1 ? "child" : "children");
+}
+
+@{ 
+    var childrenCount = 2;
+    var crisisCount = 1;
+    <p>I have @childrenCount @pluralizeChildren(childrenCount) </p>
+}
+
+@* This is a comment*@
+
+<p>
+    Mr. President, there 
+    @if(crisisCount == 1)
+    { 
+        @:is one crisis
+    }
+    else
+    { 
+        <span> are @crisisCount crisis</span>
+    }
+    you must deal with immediately!
+</p>
